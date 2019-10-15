@@ -1,0 +1,32 @@
+<mat-toolbar>
+  <span>{{employeeService.form.controls['$key'].value?"Modify Employee":"New Employee"}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form [formGroup]="employeeService.form" class="normal-form" (submit)="onSubmit()">
+  <mat-grid-list cols="4" rowHeight="300px">
+    
+      <div class="controles-container">
+        <input type="hidden" formControlName="$key">
+        <mat-form-field>
+          <input formControlName="fullName" matInput placeholder="Full Name*">
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="desgn" matInput placeholder="Designation*">
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input formControlName="salary" matInput placeholder="Salary*" (keypress)="keyPress($event)" maxlength="20">
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="submit" [disabled]="employeeService.form.invalid">Save</button>
+          <button mat-raised-button color="accent" (click)="onClose()" tabIndex="-1">Cancel</button>
+        </div>
+      </div>
+    
+    
+  </mat-grid-list>
+</form>
